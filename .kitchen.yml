@@ -1,0 +1,20 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[jlsolrcloud::default]
+    attributes:
+     jlsolrcloud:
+       # Normally set zkhosts in a wrapper cookbook
+       zkhosts:
+         - host1:2181
+         - host2:2181

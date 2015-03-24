@@ -1,0 +1,15 @@
+Encoding:
+  Enabled: false
+
+HashSyntax:
+  Enabled: false
+
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - '.kitchen/**/*'
+    - 'vendor/**/*'
+    - 'Guardfile'
