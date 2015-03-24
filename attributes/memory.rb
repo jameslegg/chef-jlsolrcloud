@@ -24,5 +24,5 @@ if node['jlsolrcloud']['auto_java_memory'] \
   # Making Java -Xmx even
   java_memory += 1 unless java_memory.even?
   node.default['jlsolrcloud']['java_mem_options'] = \
-    "-Xms#{java_memory}m -Xmx#{java_memory}m"
+    "-Xms512m -Xmx#{java_memory}m"
 end
