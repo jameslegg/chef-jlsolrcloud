@@ -23,14 +23,15 @@ GC_TUNE="-XX:NewRatio=3 \
 -XX:+CMSParallelRemarkEnabled \
 -XX:+ParallelRefProcEnabled"
 
+SOLR_MODE=solrcloud
+
 # Our Zookeeper ensemble
 ZK_HOST="<%= node['jlsolrcloud']['zkhosts'].join(',') %>"
 
 # ZooKeeper client timeout
 ZK_CLIENT_TIMEOUT="15000"
 
-# Use the Chef Node name for the instances
-SOLR_HOST="<%= node.name %>"
+SOLR_HOST="<%= node['jlsolrcloud']['fqn'] ? node['jlsolrcloud']['fqn'] : node.name %>"
 
 # The JMX RMI connector to allow remote JMX client applications
 # (false is recommended in production environments)
@@ -60,7 +61,8 @@ SOLR_OPTS="-D<%= opt%>=<%=v %>"
 # and you are using SSL, then the start script will use SOLR_PORT for the SSL port
 #SOLR_SSL_PORT=
 SOLR_PID_DIR=/var/solr
-SOLR_HOME=/var/solr/data
+SOLR_HOST="<%= node['jlsolrcloud']['fqn'] ? node['jlsolrcloud']['fqn'] : node.name %>"
+SOLR_HOME="<%= node['jlsolrcloud']['solr_home_override'] ? node['jlsolrcloud']['solr_home_override'] : node['jlsolrcloud']['solr_home'] %>"
 LOG4J_PROPS=/var/solr/log4j.properties
 SOLR_LOGS_DIR=/var/solr/logs
 SOLR_PORT=8983
