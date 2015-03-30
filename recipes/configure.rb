@@ -19,6 +19,14 @@ if node['jlsolrcloud']['solr_home_override']
     mode   0755
     notifies :restart, 'service[solr]'
   end
+else
+  cookbook_file "#{node['jlsolrcloud']['solr_home']}/solr.xml" do
+    source 'solr.xml'
+    user   node['jlsolrcloud']['user']
+    group  node['jlsolrcloud']['group']
+    mode   0755
+    notifies :restart, 'service[solr]'
+  end
 end
 
 
