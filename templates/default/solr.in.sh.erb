@@ -5,7 +5,8 @@ SOLR_JAVA_MEM="<%= node['jlsolrcloud']['java_mem_options'] %>"
 
 # Enable verbose GC logging
 GC_LOG_OPTS="-verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails \
--XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime"
+-XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime \
+-XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=6 -XX:GCLogFileSize=30M"
 
 # These GC settings have shown to work well for a number of common Solr workloads
 GC_TUNE="-XX:NewRatio=3 \
