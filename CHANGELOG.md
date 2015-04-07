@@ -1,3 +1,7 @@
+### 0.2.2
+ - append console output to file using >> instead of > to make logrotate
+   copytruncate work
+
 ### 0.2.1
  - copytruncate the log file
 

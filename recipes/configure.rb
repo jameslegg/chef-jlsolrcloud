@@ -29,8 +29,14 @@ else
   end
 end
 
-
 template "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" do
+  user  node['jlsolrcloud']['user']
+  group node['jlsolrcloud']['group']
+  mode  0755
+  notifies :restart, 'service[solr]'
+end
+
+cookbook_file '/opt/solr/bin/solr' do
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
   mode  0755
