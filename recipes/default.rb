@@ -5,3 +5,4 @@
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 include_recipe 'jlsolrcloud::install'
 include_recipe 'jlsolrcloud::configure'
+include_recipe 'jlsolrcloud::_logrotate'
