@@ -15,3 +15,5 @@ default['jlsolrcloud']['log_rotate'] = true
 
 # Set this to true to enable remote JMX RMI connector applications
 default['jlsolrcloud']['remote_jmx'] = false
+# Set RMI port for use by JMX below if enabling remote_jmx
+# default['jlsolrcloud']['rmi_port'] = '18985'

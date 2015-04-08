@@ -29,8 +29,7 @@ describe 'jlsolrcloud::configure' do
       expect(chef_run).to render_file('/opt/solr/bin/solr')
     end
 
-
-    it 'sets ENABLE_REMOTE_JMX_OPTS=false in solr.in.sh' do
+    it 'sets ENABLE_REMOTE_JMX_OPTS="false" in solr.in.sh' do
       expect(chef_run).to render_file('/var/solr/solr.in.sh')
         .with_content(/ENABLE_REMOTE_JMX_OPTS="false"/)
     end
@@ -51,20 +50,25 @@ describe 'jlsolrcloud::configure' do
     it 'creates default solr.xml' do
       expect(chef_run).to render_file('/vol/solr/solr.xml')
     end
- end
+  end
 
-
-  context 'JMX remote debuggin service enabled' do
+  context 'JMX remote debugging service enabled on port 12345' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache') do |node|
         node.set['jlsolrcloud']['zkhosts'] = ['zkhost1:2181']
         node.set['jlsolrcloud']['remote_jmx'] = true
+        node.set['jlsolrcloud']['rmi_port'] = '12345'
       end.converge(described_recipe)
     end
 
-    it 'sets ENABLE_REMOTE_JMX_OPTS=true in solr.in.sh' do
+    it 'sets ENABLE_REMOTE_JMX_OPTS="true" in solr.in.sh' do
       expect(chef_run).to render_file('/var/solr/solr.in.sh')
         .with_content(/ENABLE_REMOTE_JMX_OPTS="true"/)
+    end
+
+    it 'sets RMI_PORT="12345" in solr.in.sh' do
+      expect(chef_run).to render_file('/var/solr/solr.in.sh')
+        .with_content(/RMI_PORT="12345"/)
     end
   end
 end

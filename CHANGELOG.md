@@ -1,5 +1,6 @@
 ### 0.3.0
- - add node['jlsolrcloud]['remote_jmx'] attribute to enable remote JMX
+ - add node['jlsolrcloud]['remote_jmx'] and optional rmi_port attributes
+   to enable remote JMX
  - more complete chefspec coverage for jlsolrcloud::configure
 
 ### 0.2.2
