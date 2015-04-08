@@ -36,7 +36,10 @@ SOLR_HOST="<%= node['jlsolrcloud']['fqn'] ? node['jlsolrcloud']['fqn'] : node.na
 
 # The JMX RMI connector to allow remote JMX client applications
 # (false is recommended in production environments)
-ENABLE_REMOTE_JMX_OPTS="false"
+ENABLE_REMOTE_JMX_OPTS="<%= node['jlsolrcloud']['remote_jmx'] ? "true" : "false" %>"
+<% if node['jlsolrcloud'].has_key?('rmi_port') %>
+RMI_PORT="<%= node['jlsolrcloud']['rmi_port'] %>"
+<% end %>
 
 # Anything you add to the SOLR_OPTS variable will be included in the java
 # start command line as-is, in ADDITION to other options. If you specify the
