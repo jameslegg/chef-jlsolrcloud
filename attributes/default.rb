@@ -12,3 +12,6 @@ default['jlsolrcloud']['install']['version'] = '5.0.0'
 
 # Set this to false to NOT use logrotate to mange solr log
 default['jlsolrcloud']['log_rotate'] = true
+
+# Set this to true to enable remote JMX RMI connector applications
+default['jlsolrcloud']['remote_jmx'] = false

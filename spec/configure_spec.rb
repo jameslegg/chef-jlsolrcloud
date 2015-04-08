@@ -20,5 +20,51 @@ describe 'jlsolrcloud::configure' do
     it 'enable the solr service' do
       expect(chef_run).to enable_service('solr')
     end
+
+    it 'creates cookbooks default solr.xml' do
+      expect(chef_run).to render_file('/var/solr/solr.xml')
+    end
+
+    it 'creates cookbooks default solr startup script' do
+      expect(chef_run).to render_file('/opt/solr/bin/solr')
+    end
+
+
+    it 'sets ENABLE_REMOTE_JMX_OPTS=false in solr.in.sh' do
+      expect(chef_run).to render_file('/var/solr/solr.in.sh')
+        .with_content(/ENABLE_REMOTE_JMX_OPTS="false"/)
+    end
+  end
+
+  context "When we have node['jlsolrcloud']['solr_home_override'] set" do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache') do |node|
+        node.set['jlsolrcloud']['zkhosts'] = ['zkhost1:2181']
+        node.set['jlsolrcloud']['solr_home_override'] = '/vol/solr'
+      end.converge(described_recipe)
+    end
+
+    it 'creates directory for override ' do
+      expect(chef_run).to create_directory('/vol/solr')
+    end
+
+    it 'creates default solr.xml' do
+      expect(chef_run).to render_file('/vol/solr/solr.xml')
+    end
+ end
+
+
+  context 'JMX remote debuggin service enabled' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache') do |node|
+        node.set['jlsolrcloud']['zkhosts'] = ['zkhost1:2181']
+        node.set['jlsolrcloud']['remote_jmx'] = true
+      end.converge(described_recipe)
+    end
+
+    it 'sets ENABLE_REMOTE_JMX_OPTS=true in solr.in.sh' do
+      expect(chef_run).to render_file('/var/solr/solr.in.sh')
+        .with_content(/ENABLE_REMOTE_JMX_OPTS="true"/)
+    end
   end
 end
