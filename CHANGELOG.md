@@ -1,4 +1,8 @@
 ### 0.3.0
+ - Restart solr immediately during configure stage this is useful when enabling
+   solrcloud and needing to interact with API later in chef run.
+
+### 0.3.0
  - add node['jlsolrcloud]['remote_jmx'] and optional rmi_port attributes
    to enable remote JMX
  - more complete chefspec coverage for jlsolrcloud::configure

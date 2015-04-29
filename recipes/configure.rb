@@ -40,7 +40,10 @@ cookbook_file '/opt/solr/bin/solr' do
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
   mode  0755
-  notifies :restart, 'service[solr]'
+  # notify immediatly so that on first run Solr will
+  # be running as directed for any other chef things
+  # that may want to use it's API
+  notifies :restart, 'service[solr]', :immediately
 end
 
 service 'solr' do
