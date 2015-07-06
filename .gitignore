@@ -7,7 +7,6 @@
 *.un~
 
 # Bundler
-Gemfile.lock
 bin/*
 .bundle/*
 
