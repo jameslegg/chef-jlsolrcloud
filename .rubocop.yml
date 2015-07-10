@@ -7,6 +7,9 @@ HashSyntax:
 Style/SingleSpaceBeforeFirstArg:
   Enabled: false
 
+Style/SpaceAroundOperators:
+  Enabled: false
+
 AllCops:
   Exclude:
     - 'bin/**/*'

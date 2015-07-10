@@ -8,12 +8,8 @@ driver:
   docker_path: /usr/bin/docker'
   <% end %>
   forward_agent: true
-  require_chef_omnibus: true
+  require_chef_omnibus: 12.3
   disable_upstart: false
-  provision_command:
-    - apt-get update
-    - chown root:root /usr/bin/sudo
-    - chmod 4755 /usr/bin/sudo
   use_cache: false
   remove_images: true
 
