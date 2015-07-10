@@ -10,8 +10,13 @@ default['jlsolrcloud']['solr_home'] = '/var/solr'
 default['jlsolrcloud']['install']['url'] = 'http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/'
 default['jlsolrcloud']['install']['version'] = '5.2.1'
 
-# Set this to false to NOT use logrotate to mange solr log
-default['jlsolrcloud']['log_rotate'] = true
+# Set this to false to NOT use logrotate to mange the solr Console log
+# NOTE: log4j.properties is used to configure the main logs
+default['jlsolrcloud']['log_rotate']['enable'] = true
+# number of Console logs to keep
+default['jlsolrcloud']['log_rotate']['rotate'] = 3
+# one of logrotates time specifics (hourly, daily, weekly)
+default['jlsolrcloud']['log_rotate']['frequency'] = 'weekly'
 
 # Set this to true to enable remote JMX RMI connector applications
 default['jlsolrcloud']['remote_jmx'] = false

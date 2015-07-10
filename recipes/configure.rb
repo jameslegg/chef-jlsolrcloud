@@ -12,6 +12,12 @@ if node['jlsolrcloud']['solr_home_override']
     recursive true
   end
 
+  directory "#{node['jlsolrcloud']['solr_home_override']}/logs" do
+    owner  node['jlsolrcloud']['user']
+    group  node['jlsolrcloud']['group']
+    mode   0755
+  end
+
   cookbook_file "#{node['jlsolrcloud']['solr_home_override']}/solr.xml" do
     source 'solr.xml'
     user   node['jlsolrcloud']['user']
@@ -27,9 +33,22 @@ else
     mode   0755
     notifies :restart, 'service[solr]'
   end
+
+  directory "#{node['jlsolrcloud']['solr_home']}/logs" do
+    owner  node['jlsolrcloud']['user']
+    group  node['jlsolrcloud']['group']
+    mode   0755
+  end
 end
 
 template "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" do
+  user  node['jlsolrcloud']['user']
+  group node['jlsolrcloud']['group']
+  mode  0755
+  notifies :restart, 'service[solr]'
+end
+
+cookbook_file '/var/solr/log4j.properties' do
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
   mode  0755

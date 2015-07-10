@@ -5,8 +5,8 @@ default['jlsolrcloud']['auto_java_memory'] = true
 default['jlsolrcloud']['auto_system_memory'] = 768
 
 # Calculate -Xmx (Multiple of 1024)
-if node['jlsolrcloud']['auto_java_memory'] \
-  && node['memory'] && node['memory'].key?('total')
+if node['jlsolrcloud']['auto_java_memory'] && \
+   node['memory'] && node['memory'].key?('total')
   total_memory = (node['memory']['total'].gsub('kB', '').to_i / 1024).to_i
   total_memory_percentage = (total_memory % 1024)
   system_memory = if total_memory < 2048

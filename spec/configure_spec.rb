@@ -21,8 +21,16 @@ describe 'jlsolrcloud::configure' do
       expect(chef_run).to enable_service('solr')
     end
 
+    it 'creates logs directory' do
+      expect(chef_run).to create_directory('/var/solr/logs')
+    end
+
     it 'creates cookbooks default solr.xml' do
       expect(chef_run).to render_file('/var/solr/solr.xml')
+    end
+
+    it 'creates default log4j.properties file' do
+      expect(chef_run).to render_file('/var/solr/log4j.properties')
     end
 
     it 'creates cookbooks default solr startup script' do
@@ -45,6 +53,14 @@ describe 'jlsolrcloud::configure' do
 
     it 'creates directory for override ' do
       expect(chef_run).to create_directory('/vol/solr')
+    end
+
+    it 'creates logs directory for override ' do
+      expect(chef_run).to create_directory('/vol/solr/logs')
+    end
+
+    it 'creates default log4j.properties file' do
+      expect(chef_run).to render_file('/var/solr/log4j.properties')
     end
 
     it 'creates default solr.xml' do

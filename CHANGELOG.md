@@ -1,4 +1,9 @@
 ### 0.4.0
+ - Add attributes to control logrotation of console logs, change defaults to 
+   weekly and keep 3 log files
+ - Configure log4j logging with sensible default
+
+### 0.4.0
  - Upgrade to work with solr 5.2.1
 
 ### 0.3.0
