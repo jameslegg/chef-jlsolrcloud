@@ -39,5 +39,8 @@ suites:
      jlsolrcloud:
        # Normally set zkhosts in a wrapper cookbook
        zkhosts:
-         - host1:2181
-         - host2:2181
+         - zookeeper:2181
+    # As defined in docker-compose.yml
+    driver:
+      links:
+        - chefjlsolrcloud_zookeeper_1:zookeeper

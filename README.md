@@ -1,6 +1,9 @@
 # chef-jlsolrcloud
 
-A very basic cookbook to install solr5 using the Solr provided shell script.
+A basic cookbook to install solr5 using the Solr provided shell script.
+
+[clocker](https://github.com/jameslegg/chef-locker) is used to prevent configuration
+changes restarting nodes across the cluster.
 
 It enables the service using the default init.d script provided.
 

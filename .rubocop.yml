@@ -16,3 +16,4 @@ AllCops:
     - '.kitchen/**/*'
     - 'vendor/**/*'
     - 'Guardfile'
+    - 'Berksfile'
