@@ -102,8 +102,8 @@ GEM
     json (1.8.2)
     kitchen-docker (2.1.0)
       test-kitchen (>= 1.0.0)
-    kitchen-vagrant (0.17.0)
-      test-kitchen (~> 1.4)
+    kitchen-vagrant (0.16.0)
+      test-kitchen (~> 1.0)
     libyajl2 (1.2.0)
     method_source (0.8.2)
     mime-types (2.5)
@@ -242,10 +242,11 @@ PLATFORMS
 
 DEPENDENCIES
   berkshelf (~> 3)
-  chefspec (>= 4.0)
+  chef (= 12.3)
+  chefspec (>= 4.2)
   foodcritic
   kitchen-docker (>= 1.5)
-  kitchen-vagrant
+  kitchen-vagrant (= 0.16.0)
   nokogiri (= 1.6.3.1)
   rubocop
   serverspec
