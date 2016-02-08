@@ -12,4 +12,3 @@ depends          'java'
 depends          'logrotate'
 depends          'apt'
 depends          'clocker', '~> 0.3'
-
