@@ -13,5 +13,5 @@ group :dev do
   gem 'foodcritic'
   gem 'serverspec'
   gem 'chefspec', '>= 4.2'
-  gem 'zookeeper', '= 1.4.11'
+  gem 'zk', '= 1.9.0'
 end
