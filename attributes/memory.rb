@@ -23,6 +23,11 @@ if node['jlsolrcloud']['auto_java_memory'] && \
   java_memory = total_memory - system_memory
   # Making Java -Xmx even
   java_memory += 1 unless java_memory.even?
+  if java_memory > 512
+    initial_memory = 512
+  else
+    initial_memory = (java_memory * 0.5).to_i
+  end
   node.default['jlsolrcloud']['java_mem_options'] = \
-    "-Xms512m -Xmx#{java_memory}m"
+    "-Xms#{initial_memory}m -Xmx#{java_memory}m"
 end
