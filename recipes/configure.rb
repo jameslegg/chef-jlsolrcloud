@@ -9,7 +9,7 @@ clocker 'solr-node-restart' do
 end
 
 if node['jlsolrcloud']['zkhosts'].length < 1
-  fail "At least one zkhost is needed in node['jlsolrcloud']['zkhosts']"
+  raise "At least one zkhost is needed in node['jlsolrcloud']['zkhosts']"
 end
 
 if node['jlsolrcloud']['solr_home_override']

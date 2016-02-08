@@ -1,9 +1,15 @@
+### 0.7.0
+ - Make it easy to converge the recipe in a test kitchen by installing
+   zookeeper in the test kitchen.
+ - Ensure initial JVM memory is always less than the maximum
+ - Update chef spec tests
+
 ### 0.6.0
  - Use clocker to only restart one node on the cluster at a time
  - Correct log4j log location
 
 ### 0.4.0
- - Add attributes to control logrotation of console logs, change defaults to 
+ - Add attributes to control logrotation of console logs, change defaults to
    weekly and keep 3 log files
  - Configure log4j logging with sensible default
 
