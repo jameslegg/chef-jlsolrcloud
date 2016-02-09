@@ -1,3 +1,6 @@
+### 0.7.1
+ - Specify correct zk dependency in Gemfile
+
 ### 0.7.0
  - Make it easy to converge the recipe in a test kitchen by installing
    zookeeper in the test kitchen.
