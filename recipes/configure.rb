@@ -32,7 +32,7 @@ if node['jlsolrcloud']['solr_home_override']
     group  node['jlsolrcloud']['group']
     mode   0755
     only_if { Clocker.held?('solr-node-restart', run_context) }
-    notifies :restart, 'service[solr]'
+    notifies :restart, 'service[solr]', :immediately
   end
 else
   cookbook_file "#{node['jlsolrcloud']['solr_home']}/solr.xml" do
@@ -41,7 +41,7 @@ else
     group  node['jlsolrcloud']['group']
     mode   0755
     only_if { Clocker.held?('solr-node-restart', run_context) }
-    notifies :restart, 'service[solr]'
+    notifies :restart, 'service[solr]', :immediately
   end
 
   directory "#{node['jlsolrcloud']['solr_home']}/logs" do
@@ -56,7 +56,7 @@ template "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" do
   group node['jlsolrcloud']['group']
   mode  0755
   only_if { Clocker.held?('solr-node-restart', run_context) }
-  notifies :restart, 'service[solr]'
+  notifies :restart, 'service[solr]', :immediately
 end
 
 cookbook_file '/var/solr/log4j.properties' do
@@ -64,7 +64,7 @@ cookbook_file '/var/solr/log4j.properties' do
   group node['jlsolrcloud']['group']
   mode  0755
   only_if { Clocker.held?('solr-node-restart', run_context) }
-  notifies :restart, 'service[solr]'
+  notifies :restart, 'service[solr]', :immediately
 end
 
 # We do a single line change to the solr script to allow us to rotate
