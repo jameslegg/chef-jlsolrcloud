@@ -1,5 +1,5 @@
 ### 1.0.0
- - Upgrade Solr to v5.4.1 and cache it on S3
+ - Upgrade Solr to v5.4.1
  - Make all Solr process restarts immediate after config file changes
 
 ### 0.7.1
