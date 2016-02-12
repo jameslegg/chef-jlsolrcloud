@@ -32,7 +32,7 @@ if node['jlsolrcloud']['solr_home_override']
     group  node['jlsolrcloud']['group']
     mode   0755
     only_if { Clocker.held?('solr-node-restart', run_context) }
-    notifies :restart, 'service[solr]'
+    notifies :restart, 'service[solr]', :immediately
   end
 else
   cookbook_file "#{node['jlsolrcloud']['solr_home']}/solr.xml" do
@@ -41,7 +41,7 @@ else
     group  node['jlsolrcloud']['group']
     mode   0755
     only_if { Clocker.held?('solr-node-restart', run_context) }
-    notifies :restart, 'service[solr]'
+    notifies :restart, 'service[solr]', :immediately
   end
 
   directory "#{node['jlsolrcloud']['solr_home']}/logs" do
@@ -56,26 +56,13 @@ template "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" do
   group node['jlsolrcloud']['group']
   mode  0755
   only_if { Clocker.held?('solr-node-restart', run_context) }
-  notifies :restart, 'service[solr]'
+  notifies :restart, 'service[solr]', :immediately
 end
 
 cookbook_file '/var/solr/log4j.properties' do
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
   mode  0755
-  only_if { Clocker.held?('solr-node-restart', run_context) }
-  notifies :restart, 'service[solr]'
-end
-
-# We do a single line change to the solr script to allow us to rotate
-# the console log using copy/truncate methods without restarting solr
-cookbook_file '/opt/solr/bin/solr' do
-  user  node['jlsolrcloud']['user']
-  group node['jlsolrcloud']['group']
-  mode  0755
-  # notify immediatly so that on first run Solr will
-  # be running as directed for any other chef things
-  # that may want to use it's API
   only_if { Clocker.held?('solr-node-restart', run_context) }
   notifies :restart, 'service[solr]', :immediately
 end
