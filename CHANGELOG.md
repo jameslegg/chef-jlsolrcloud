@@ -1,3 +1,6 @@
+### 1.1.1
+ - Rubocop fix
+
 ### 1.1.0
  - Add switch to enable skipping Solr install
 
