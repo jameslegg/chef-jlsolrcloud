@@ -1,3 +1,6 @@
+### 1.1.0
+ - Add switch to enable skipping Solr install
+
 ### 1.0.0
  - Upgrade Solr to v5.4.1
  - Make all Solr process restarts immediate after config file changes
