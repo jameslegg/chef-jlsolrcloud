@@ -22,3 +22,7 @@ default['jlsolrcloud']['log_rotate']['frequency'] = 'weekly'
 default['jlsolrcloud']['remote_jmx'] = false
 # Set RMI port for use by JMX below if enabling remote_jmx
 # default['jlsolrcloud']['rmi_port'] = '18985'
+
+# We have an AMI that preinstalls Solr so don't want to spend time downloading
+# the installers
+default['jlsolrcloud']['install_solr'] = true
