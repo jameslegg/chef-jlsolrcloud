@@ -1,3 +1,8 @@
+### 1.1.2
+ - Workaround bug in Solr 5.4.1 where it looks for settings file in a different
+ location to the one in the docs by symlinking the file to the expected
+ directory
+
 ### 1.1.1
  - Rubocop fix
 
