@@ -66,7 +66,6 @@ link "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" do
   to '/etc/default/solr.in.sh'
 end
 
-
 cookbook_file '/var/solr/log4j.properties' do
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
