@@ -51,19 +51,12 @@ else
   end
 end
 
-template "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" do
+template "/etc/default/solr.in.sh" do
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
   mode  0755
   only_if { Clocker.held?('solr-node-restart', run_context) }
   notifies :restart, 'service[solr]', :immediately
-end
-
-# There's a bug in the installer for Solr 5.4.1 where it looks for this
-# file in the wrong place, symlink the correct location to where
-# Solr incorrectly expects it to be
-link "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" do
-  to '/etc/default/solr.in.sh'
 end
 
 cookbook_file '/var/solr/log4j.properties' do
