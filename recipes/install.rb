@@ -44,3 +44,12 @@ bash 'run solr install script' do
   cwd Chef::Config[:file_cache_path]
   not_if { ::File.exist?(solr_install_dir) }
 end
+
+# Optionally get FluentD Log4j appender.
+if node['jlsolrcloud']['fluentd']['source']
+  solr_lib_path = "#{solr_install_dir}/server/lib"
+
+  remote_file "#{solr_lib_path}/log4j-fluentd-with-dependencies.jar" do
+    source node['jlsolrcloud']['fluentd']['source']
+  end
+end

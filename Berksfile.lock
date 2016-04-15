@@ -27,7 +27,7 @@ GRAPH
   jlaws (0.2.0)
     apt (>= 0.0.0)
     build-essential (~> 2.0)
-  jlsolrcloud (1.1.2)
+  jlsolrcloud (1.2.0)
     apt (>= 0.0.0)
     clocker (~> 0.3)
     java (>= 0.0.0)
