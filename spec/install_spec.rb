@@ -48,5 +48,28 @@ describe 'jlsolrcloud::install' do
         code: './install_solr_service.sh solr-5.4.1.tgz',
         cwd: '/var/chef/cache')
     end
+
+    it 'does not get fluentd appender' do
+      expect(chef_run).not_to create_remote_file(
+        '/opt/solr-5.4.1/server/lib/log4j-fluentd-with-dependencies.jar'
+      )
+    end
+  end
+
+  context 'When fluentd appender is installed, on 14.04' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache') do |node|
+        node.set['jlsolrcloud']['zkhosts'] = ['zkhost1:2181']
+        node.set['jlsolrcloud']['fluentd']['source'] = 'https://some/url'
+      end.converge(described_recipe)
+    end
+
+    it 'gets fluentd appender' do
+      expect(chef_run).to create_remote_file(
+        '/opt/solr-5.4.1/server/lib/log4j-fluentd-with-dependencies.jar'
+      ).with(
+        source: 'https://some/url'
+      )
+    end
   end
 end

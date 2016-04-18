@@ -1,3 +1,6 @@
+### 1.2.0
+ - Add optional FluentD logger to solr.
+
 ### 1.1.3
  - Remove symlink and create settings file in the correct directory
 

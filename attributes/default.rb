@@ -26,3 +26,9 @@ default['jlsolrcloud']['remote_jmx'] = false
 # We have an AMI that preinstalls Solr so don't want to spend time downloading
 # the installers
 default['jlsolrcloud']['install_solr'] = true
+
+# Optional FluentD logger is enabled by setting a location for the JAR file.
+default['jlsolrcloud']['fluentd']['source'] = nil
+default['jlsolrcloud']['fluentd']['host'] = 'localhost'
+default['jlsolrcloud']['fluentd']['port'] = 24_224
+default['jlsolrcloud']['fluentd']['tag'] = 'solr'
