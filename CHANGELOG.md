@@ -1,3 +1,6 @@
+### 1.2.1
+ - Make sure the fluentd logger is added to prebuilt images, but only if needed.
+
 ### 1.2.0
  - Add optional FluentD logger to solr.
 
