@@ -6,4 +6,5 @@
 #
 # We have an AMI that preinstalls Solr so want to skip this to save time
 include_recipe 'jlsolrcloud::install' if node['jlsolrcloud']['install_solr']
+include_recipe 'jlsolrcloud::_post_install'
 include_recipe 'jlsolrcloud::configure'
