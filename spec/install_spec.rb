@@ -31,12 +31,12 @@ describe 'jlsolrcloud::install' do
 
     it 'creates solr tar file' do
       expect(chef_run).to create_remote_file_if_missing(
-        '/var/chef/cache/solr-5.4.1.tgz')
+        '/var/chef/cache/solr-6.0.0.tgz')
     end
 
     it 'unzips the install script file' do
-      untar_script = 'tar xzf solr-5.4.1.tgz '
-      untar_script << 'solr-5.4.1/bin/install_solr_service.sh'
+      untar_script = 'tar xzf solr-6.0.0.tgz '
+      untar_script << 'solr-6.0.0/bin/install_solr_service.sh'
       untar_script << ' --strip-components=2'
 
       expect(chef_run).to run_execute(untar_script).with(
@@ -45,30 +45,13 @@ describe 'jlsolrcloud::install' do
 
     it 'runs the install script file' do
       expect(chef_run).to run_bash('run solr install script').with(
-        code: './install_solr_service.sh solr-5.4.1.tgz',
+        code: './install_solr_service.sh solr-6.0.0.tgz',
         cwd: '/var/chef/cache')
     end
 
     it 'does not get fluentd appender' do
       expect(chef_run).not_to create_remote_file(
-        '/opt/solr-5.4.1/server/lib/log4j-fluentd-with-dependencies.jar'
-      )
-    end
-  end
-
-  context 'When fluentd appender is installed, on 14.04' do
-    let(:chef_run) do
-      ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache') do |node|
-        node.set['jlsolrcloud']['zkhosts'] = ['zkhost1:2181']
-        node.set['jlsolrcloud']['fluentd']['source'] = 'https://some/url'
-      end.converge(described_recipe)
-    end
-
-    it 'gets fluentd appender' do
-      expect(chef_run).to create_remote_file(
-        '/opt/solr-5.4.1/server/lib/log4j-fluentd-with-dependencies.jar'
-      ).with(
-        source: 'https://some/url'
+        '/opt/solr-6.0.0/server/lib/log4j-fluentd-with-dependencies.jar'
       )
     end
   end
