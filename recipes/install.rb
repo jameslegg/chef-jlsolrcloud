@@ -4,7 +4,7 @@ include_recipe 'jlsolrcloud::user'
 
 package 'unzip'
 
-# Install SolrCloud 5+ using the default Apache install script
+# Install SolrCloud 6 using the default Apache install script
 solr_tar = "#{Chef::Config[:file_cache_path]}/"
 solr_tar << "solr-#{node['jlsolrcloud']['install']['version']}.tgz"
 

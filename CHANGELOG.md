@@ -1,3 +1,6 @@
+### 2.0.0
+ - Install Solr 6.0.0 by default
+
 ### 1.2.1
  - Make sure the fluentd logger is added to prebuilt images, but only if needed.
 
