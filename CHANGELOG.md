@@ -1,3 +1,6 @@
+### 2.1.0
+ - Allow zookeeper path to be specified
+
 ### 2.0.0
  - Install Solr 6.0.0 by default
 

@@ -27,7 +27,11 @@ GC_TUNE="-XX:NewRatio=3 \
 SOLR_MODE=solrcloud
 
 # Our Zookeeper ensemble
+<% if node['jlsolrcloud']['zk_path'] %>
+ZK_HOST="<%= node['jlsolrcloud']['zkhosts'].join(',') + '/' + node['jlsolrcloud']['zk_path'] %>"
+<% else %>
 ZK_HOST="<%= node['jlsolrcloud']['zkhosts'].join(',') %>"
+<% end %>
 
 # ZooKeeper client timeout
 ZK_CLIENT_TIMEOUT="15000"
