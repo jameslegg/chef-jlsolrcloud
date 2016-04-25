@@ -13,6 +13,6 @@ if node['jlsolrcloud']['fluentd']['source']
 
   remote_file log4j_fluent_lib do
     source node['jlsolrcloud']['fluentd']['source']
-    not_if { ::File.exists?(log4j_fluent_lib) }
+    not_if { ::File.exist?(log4j_fluent_lib) }
   end
 end
