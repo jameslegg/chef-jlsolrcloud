@@ -69,6 +69,7 @@ template '/var/solr/log4j.properties' do
   notifies :restart, 'service[solr]', :immediately
   variables(
     'fluentd' => !node['jlsolrcloud']['fluentd']['source'].nil?,
+    'mdcKeys' => node['jlsolrcloud']['fluentd']['mdcKeys'],
     'host' => node['jlsolrcloud']['fluentd']['host'],
     'port' => node['jlsolrcloud']['fluentd']['port'],
     'tag'  => node['jlsolrcloud']['fluentd']['tag']

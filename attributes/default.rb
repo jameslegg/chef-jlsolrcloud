@@ -32,3 +32,5 @@ default['jlsolrcloud']['fluentd']['source'] = nil
 default['jlsolrcloud']['fluentd']['host'] = 'localhost'
 default['jlsolrcloud']['fluentd']['port'] = 24_224
 default['jlsolrcloud']['fluentd']['tag'] = 'solr'
+default['jlsolrcloud']['fluentd']['mdcKeys'] = \
+  'collection,core,node_name,replica,shard'

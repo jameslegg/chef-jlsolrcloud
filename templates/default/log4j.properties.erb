@@ -26,6 +26,7 @@ log4j.appender.fluentd=com.twimba.fluentd4log4j.FluentdAppender
 log4j.appender.fluentd.host=<%= @host %>
 log4j.appender.fluentd.port=<%= @port %>
 log4j.appender.fluentd.tag=<%= @tag %>
+<% if @mdcKeys %>log4j.appender.fluentd.mdcKeys=<%= @mdcKeys %><% end %>
 <% end %>
 
 # Set to INFO to enable infostream log messages
