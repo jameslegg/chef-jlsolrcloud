@@ -1,3 +1,6 @@
+### 2.1.1
+ - Extend fluentd log events.
+
 ### 2.1.0
  - Allow zookeeper path to be specified
 
