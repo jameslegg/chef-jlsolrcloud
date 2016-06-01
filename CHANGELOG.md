@@ -1,3 +1,6 @@
+### 2.1.2
+- Update location of Solr files
+
 ### 2.1.1
  - Extend fluentd log events.
 
