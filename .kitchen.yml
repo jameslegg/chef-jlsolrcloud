@@ -37,6 +37,9 @@ suites:
   - name: default
     driver:
       name: vagrant
+      provision: true
+      vagrantfiles:
+        - vagrant.rb
     run_list:
       - recipe[jlsolrcloud_bootstrap::default]
     attributes:

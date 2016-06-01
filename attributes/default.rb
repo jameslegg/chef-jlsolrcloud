@@ -7,7 +7,8 @@ default['jlsolrcloud']['solr_home'] = '/var/solr'
 
 # If required set default['jlsolrcloud']['install']['local_cache']
 # to a local location for faster access to solr
-default['jlsolrcloud']['install']['url'] = 'http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/'
+default['jlsolrcloud']['install']['url'] = 'http://archive.apache.org/dist/'
+default['jlsolrcloud']['install']['url'] += 'lucene/solr/'
 default['jlsolrcloud']['install']['version'] = '6.0.0'
 
 # Set this to false to NOT use logrotate to mange the solr Console log
