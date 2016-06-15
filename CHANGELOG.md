@@ -1,3 +1,6 @@
+### 2.1.3
+- Fix tests and style warnings.
+
 ### 2.1.2
 - Update location of Solr files
 

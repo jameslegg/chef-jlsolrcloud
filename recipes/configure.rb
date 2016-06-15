@@ -8,7 +8,7 @@ clocker 'solr-node-restart' do
   action :clockon
 end
 
-if node['jlsolrcloud']['zkhosts'].length < 1
+if node['jlsolrcloud']['zkhosts'].empty?
   raise "At least one zkhost is needed in node['jlsolrcloud']['zkhosts']"
 end
 

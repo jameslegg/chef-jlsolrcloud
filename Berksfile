@@ -1,4 +1,4 @@
-source 'https://supermarket.chef.io'
+# ** #source 'https://supermarket.chef.io'
 source 'http://berksapi.configsocial.com'
 
 metadata
