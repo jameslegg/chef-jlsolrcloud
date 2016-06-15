@@ -31,7 +31,8 @@ describe 'jlsolrcloud::install' do
 
     it 'creates solr tar file' do
       expect(chef_run).to create_remote_file_if_missing(
-        '/var/chef/cache/solr-6.0.0.tgz')
+        '/var/chef/cache/solr-6.0.0.tgz'
+      )
     end
 
     it 'unzips the install script file' do
@@ -40,13 +41,15 @@ describe 'jlsolrcloud::install' do
       untar_script << ' --strip-components=2'
 
       expect(chef_run).to run_execute(untar_script).with(
-        cwd: '/var/chef/cache')
+        cwd: '/var/chef/cache'
+      )
     end
 
     it 'runs the install script file' do
       expect(chef_run).to run_bash('run solr install script').with(
         code: './install_solr_service.sh solr-6.0.0.tgz',
-        cwd: '/var/chef/cache')
+        cwd: '/var/chef/cache'
+      )
     end
 
     it 'does not get fluentd appender' do
