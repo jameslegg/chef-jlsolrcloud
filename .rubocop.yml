@@ -10,6 +10,10 @@ Style/SpaceBeforeFirstArg:
 Style/SpaceAroundOperators:
   Enabled: false
 
+Style/NumericLiteralPrefix:
+  EnforcedOctalStyle: zero_only
+  Enabled: true
+
 AllCops:
   Exclude:
     - 'bin/**/*'

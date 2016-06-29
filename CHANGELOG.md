@@ -1,3 +1,6 @@
+### 2.1.4
+- Don't enforce non unix octal style for unix file perms
+
 ### 2.1.3
 - Fix tests and style warnings.
 
