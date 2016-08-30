@@ -1,3 +1,9 @@
+### 0.7.2
+ - Fix OutOfMemory handling in Solr init script. This is a bug in Solr 5.2.1
+ and is fixed in 5.5.1+. We have backported the fix here. The arguments were
+ being passed in, in the wrong order and ignored.
+ See - https://issues.apache.org/jira/browse/SOLR-8145
+
 ### 0.7.1
  - Specify correct zk dependency in Gemfile
 
