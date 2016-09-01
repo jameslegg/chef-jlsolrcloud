@@ -67,8 +67,10 @@ cookbook_file '/var/solr/log4j.properties' do
   notifies :restart, 'service[solr]'
 end
 
-# We do a single line change to the solr script to allow us to rotate
-# the console log using copy/truncate methods without restarting solr
+# We have two changes to this file
+# 1) to allow us to rotate the console log using copy/truncate methods without
+# restarting solr
+# 2) A backported fix to make OutOfMemory handling actually work
 cookbook_file '/opt/solr/bin/solr' do
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
