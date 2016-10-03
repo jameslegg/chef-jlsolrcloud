@@ -24,7 +24,7 @@ provisioner:
       fluentd:
         # The file does not need to be a valid JAR file.
         # This will enable fluentd configuration but solr will (fail and) skip
-        # configuration at start time.
+        # fluentd logging configuration at start time.
         source: 'https://www.google.com'
 
 platforms:
@@ -51,10 +51,12 @@ suites:
     run_list:
       - recipe[jlsolrcloud::default]
     attributes:
-     jlsolrcloud:
-       # Normally set zkhosts in a wrapper cookbook
-       zkhosts:
-         - zookeeper:2181
+      jlsolrcloud:
+        remote_jmx: true
+
+        # Normally set zkhosts in a wrapper cookbook
+        zkhosts:
+          - zookeeper:2181
     # As defined in docker-compose.yml
     driver:
       links:

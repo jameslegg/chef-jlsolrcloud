@@ -8,7 +8,7 @@ group :dev do
   gem 'test-kitchen'
   # Prevent conflicts with ChefDK 0.6.0
   gem 'kitchen-vagrant', '= 0.16.0'
-  gem 'kitchen-docker', '>= 1.5'
+  gem 'kitchen-docker', '~> 2.5.0'
   gem 'rubocop'
   gem 'foodcritic'
   gem 'serverspec'
