@@ -49,9 +49,10 @@ RMI_PORT="<%= node['jlsolrcloud']['rmi_port'] %>"
 # start command line as-is, in ADDITION to other options. If you specify the
 # -a option on start script, those options will be appended as well.
 # We populate these from node['jlsolrcloud']['solr_ops'] in chef
+SOLR_OPTS=""
 <% if node['jlsolrcloud'].has_key?('solr_ops') %>
   <% node['jlsolrcloud']['solr_ops'].each do |opt,v| %>
-SOLR_OPTS="-D<%= opt%>=<%=v %>"
+SOLR_OPTS="${SOLR_OPTS} -D<%= opt%>=<%=v %>"
   <% end %>
 <% end %>
 # SOLR_OPTS should be formatted as below examples

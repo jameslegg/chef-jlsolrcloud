@@ -51,7 +51,16 @@ else
   end
 end
 
-template '/etc/default/solr.in.sh' do
+# The default path for solr.in.sh was changed in 5.4.0
+# See https://github.com/apache/lucene-solr/commit/872e329a2b7b7bf4e8b26708438932a1157c96a7
+solr540  = Gem::Version.new('5.4.0')
+solr_ver = Gem::Version.new(node['jlsolrcloud']['install']['version'])
+solr_in_sh = '/etc/default/solr.in.sh'
+solr_in_sh = "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" \
+  if solr_ver < solr540
+
+template solr_in_sh do
+  action :create
   user  node['jlsolrcloud']['user']
   group node['jlsolrcloud']['group']
   mode  0755

@@ -1,3 +1,6 @@
+### 2.2.0
+- Place `solr.in.sh` file to a path based on the solr version.
+
 ### 2.1.4
 - Don't enforce non unix octal style for unix file perms
 
