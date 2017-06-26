@@ -1,3 +1,8 @@
+### 0.7.3
+ - Install the JDK from S3
+ - Update location of Solr 5.2.1
+ - Run apt-get update before kitchen converge
+
 ### 0.7.2
  - Fix OutOfMemory handling in Solr init script. This is a bug in Solr 5.2.1
  and is fixed in 5.5.1+. We have backported the fix here. The arguments were
