@@ -1,2 +1,2 @@
 zookeeper:
-    image: jplock/zookeeper
+  image: jplock/zookeeper

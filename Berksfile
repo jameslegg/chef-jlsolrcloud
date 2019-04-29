@@ -1,5 +1,5 @@
 # ** #source 'https://supermarket.chef.io'
-source 'http://berksapi.configsocial.com'
+source :chef_server
 
 metadata
 

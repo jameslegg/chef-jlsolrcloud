@@ -1,22 +1,14 @@
----
 driver:
-  name: docker
-  <% if (RUBY_PLATFORM =~ /darwin/) %>
-  socket: <%= "#{ENV['DOCKER_HOST']}" %>
-  docker_path: /usr/local/bin/docker
-  <% else %>
-  docker_path: /usr/bin/docker'
-  <% end %>
-  forward_agent: true
-  require_chef_omnibus: 12.5
-  disable_upstart: false
-  use_cache: false
-  remove_images: true
+  name: dokken
+  chef_version: 14.11.21
+
+transport:
+  name: dokken
 
 provisioner:
-  name: chef_zero
-  environments_path: test/integration/default/environments
-  data_bags_path: test/integration/default/data_bags
+  name: dokken
+  environments_path: test/integration/environments
+  data_bags_path: test/integration/data_bags
   client_rb:
     environment: dev
   attributes:
@@ -26,37 +18,36 @@ provisioner:
         # This will enable fluentd configuration but solr will (fail and) skip
         # fluentd logging configuration at start time.
         source: 'https://www.google.com'
+      remote_jmx: true
+      zkhosts:
+        - localhost:2181
 
 platforms:
-  - name: ubuntu-14.04
+  - name: ubuntu-18.04
+    driver:
+      intermediate_instructions:
+        # Note that kitchen-dokken will only run this once when it first pulls
+        # down the image, if you have this cached and it's old you'll probably
+        # get errors from apt
+        - RUN apt-get update
+      image: dokken/ubuntu-18.04
+      privileged: true
+      pid_one_command: /bin/systemd
+      volume:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+
+verifier:
+  name: inspec
+  inspec_tests:
+    - 'test/integration/default'
 
 suites:
   # For running locally, the bootstrap cookbook will install zookeeper also in
   # the test environment. Needs to use vagrant / virtualbox as Docker does not
   # handle restarting the solr process correctly
   - name: default
-    driver:
-      name: vagrant
-      provision: true
-      vagrantfiles:
-        - vagrant.rb
     run_list:
       - recipe[jlsolrcloud_bootstrap::default]
-    attributes:
-      jlsolrcloud:
-        zkhosts:
-          - localhost:2181
- # This suite is run on a private jenkins server
-  - name: jenkins
-    run_list:
-      - recipe[jlsolrcloud::default]
-    attributes:
-      jlsolrcloud:
-        remote_jmx: true
-
-        # Normally set zkhosts in a wrapper cookbook
-        zkhosts:
-          - zookeeper:2181
     # As defined in docker-compose.yml
     driver:
       links:
