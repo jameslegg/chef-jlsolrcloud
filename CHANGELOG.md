@@ -1,3 +1,6 @@
+### 3.0.0
+- Upgrade to Ubuntu 18.04 and Chef 14.
+
 ### 2.2.0
 - Place `solr.in.sh` file to a path based on the solr version.
 

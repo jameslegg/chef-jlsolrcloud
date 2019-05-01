@@ -93,5 +93,5 @@ clocker 'solr-node-restart' do
 end
 
 service 'solr' do
-  action [:enable, :start]
+  action %i[enable start]
 end

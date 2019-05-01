@@ -4,10 +4,10 @@ Encoding:
 HashSyntax:
   Enabled: false
 
-Style/SpaceBeforeFirstArg:
+Layout/SpaceBeforeFirstArg:
   Enabled: false
 
-Style/SpaceAroundOperators:
+Layout/SpaceAroundOperators:
   Enabled: false
 
 Style/NumericLiteralPrefix:

@@ -1,4 +1,3 @@
-include_recipe 'apt'
 include_recipe 'jlsolrcloud::_java'
 include_recipe 'jlsolrcloud::user'
 
@@ -12,8 +11,8 @@ solr_tar << "solr-#{node['jlsolrcloud']['install']['version']}.tgz"
 if node['jlsolrcloud']['install']['local_cache']
   solr_url = node['jlsolrcloud']['install']['local_cache']
 else
-  solr_url = node['jlsolrcloud']['install']['url']
-  solr_url << "#{node['jlsolrcloud']['install']['version']}/"
+  solr_url = node['jlsolrcloud']['install']['url'].to_s
+  solr_url = "#{solr_url}#{node['jlsolrcloud']['install']['version']}/"
   solr_url << "solr-#{node['jlsolrcloud']['install']['version']}.tgz"
 end
 
@@ -43,4 +42,14 @@ bash 'run solr install script' do
   code run_install_script
   cwd Chef::Config[:file_cache_path]
   not_if { ::File.exist?(solr_install_dir) }
+end
+
+chown_check = "ls -la /opt/solr-#{node['jlsolrcloud']['install']['version']} "
+chown_check << "| grep #{node['jlsolrcloud']['user']}"
+chown_script = "chown -R #{node['jlsolrcloud']['user']}:"
+chown_script << "#{node['jlsolrcloud']['group']} "
+chown_script << "/opt/solr-#{node['jlsolrcloud']['install']['version']}"
+execute 'fix /opt/solr ownership' do
+  command chown_script
+  not_if chown_check
 end
