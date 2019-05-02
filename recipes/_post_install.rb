@@ -17,6 +17,14 @@ if node['jlsolrcloud']['fluentd']['source']
   end
 end
 
+# The default path for solr.in.sh was changed in 5.4.0
+# See https://github.com/apache/lucene-solr/commit/872e329a2b7b7bf4e8b26708438932a1157c96a7
+solr540  = Gem::Version.new('5.4.0')
+solr_ver = Gem::Version.new(node['jlsolrcloud']['install']['version'])
+solr_in_sh = '/etc/default/solr.in.sh'
+solr_in_sh = "#{node['jlsolrcloud']['solr_home']}/solr.in.sh" \
+  if solr_ver < solr540
+
 # Drop in SystemD unit for the service.
 # Based on a quick google search + a "translation" of the init.d service.
 systemd_unit 'solr.service' do
@@ -27,10 +35,11 @@ systemd_unit 'solr.service' do
   [Service]
   User=#{node['jlsolrcloud']['user']}
   Group=#{node['jlsolrcloud']['group']}
-  Environment='SOLR_INCLUDE=/var/solr/solr.in.sh'
+  Environment='SOLR_INCLUDE=#{solr_in_sh}'
   Environment='RUNAS=solr'
   ExecStart=/opt/solr/bin/solr start
-  PIDFile=/opt/solr/bin/solr-8983.pid
+  Type=forking
+  PIDFile=/var/solr/solr-8983.pid
   ExecStop=/opt/solr/bin/solr stop
   PrivateTmp=true
   LimitNOFILE=1048576

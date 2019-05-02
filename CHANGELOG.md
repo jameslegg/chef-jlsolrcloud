@@ -1,3 +1,6 @@
+### 3.0.1
+- Fix systemd unit to support forking and solr 5.x
+
 ### 3.0.0
 - Upgrade to Ubuntu 18.04 and Chef 14.
 
