@@ -2,6 +2,13 @@ default['jlsolrcloud']['user']  = 'solr'
 default['jlsolrcloud']['group'] = 'solr'
 default['jlsolrcloud']['user_home'] = '/home/solr'
 
+# Default systemd to always restart the service if it stops.
+# SystemD will not restart the service only if it is stopped by a
+# systemctl operation so users/chef can still stop/restart the
+# service without fighting with systemd.
+#   See `Restart` option https://www.freedesktop.org/software/systemd/man/systemd.service.html
+default['jlsolrcloud']['service_restart'] = 'always'
+
 # Changing this will require mods to how we use the solr install script
 default['jlsolrcloud']['solr_home'] = '/var/solr'
 
