@@ -1,3 +1,6 @@
+### 3.1.0
+- Configure systemd to auto-restart solr by default
+
 ### 3.0.1
 - Fix systemd unit to support forking and solr 5.x
 

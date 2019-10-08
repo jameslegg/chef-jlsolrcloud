@@ -44,6 +44,7 @@ systemd_unit 'solr.service' do
   PrivateTmp=true
   LimitNOFILE=1048576
   LimitNPROC=1048576
+  Restart=#{node['jlsolrcloud']['service_restart']}
   [Install]
   WantedBy=multi-user.target
   SYSTEMDUNIT
